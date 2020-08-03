@@ -1,0 +1,17 @@
+---
+- name: Install mongodb on Ubuntu
+  apt:
+    name: mongodb
+    state: present
+    update_cache: yes
+
+- name: start mongodb
+  service:
+    name: mongodb
+    state: started
+    enabled: yes
+
+- name: Change bind_ip to your publicIP/all-sources
+  lineinfile:
+    path: /etc/mongodb.conf
+    line: bind_ip = {{ bind_ip }}
